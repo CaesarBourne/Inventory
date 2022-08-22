@@ -19,7 +19,7 @@ export const resourceSlice = createSlice({
     },
     addResValue(state: any, action) {
       console.log("action", action);
-      const { index, id, value, formIndex, formId } = action.payload;
+      const { index, id, value, formId } = action.payload;
       // state.resource[id][formIndex][index].data = value;
       state.resource[id].find((v: any) => v.id === formId)
       .value[index].data = value

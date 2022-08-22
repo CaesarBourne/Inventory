@@ -5,17 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./form.css";
 import CustomResInput from "./FormFields/CustomResInput";
 
-const ResForm = ({ formValues, id, formIndex, home }: any) => {
+const ResForm = ({ formValues, id, home }: any) => {
   const { control } = useForm();
   const resources = useSelector((state: any) => state.resource.resource);
-  // console.log("www", { formvalue, id, formIndex });
-  let formvalue = home ? formValues.value : formValues;
-
-  const formInputs = formvalue.value.map((e: any, index: any) => {
+  console.log('formValues', formValues)
+  console.log('id', id)
+  const formInputs = formValues.value.map((e: any, index: any) => {
     const { opt, value, label } = e;
-    console.log("indexes", formValues);
-    console.log("index", resources);
-
     return (
       <section key={index}>
         {/* <label>{label}</label> */}
@@ -30,19 +26,15 @@ const ResForm = ({ formValues, id, formIndex, home }: any) => {
                   // value={field.value}
                   // value={resources[id][formIndex][index].data}
                   value={
-                    home
-                      ? formValues.value.find(
-                          (v: any) => v.id === formValues.id
-                        ).value[index].data
-                      : resources[id].find((v: any) => v.id === formvalue.id).value[index].data
+                    resources[id].find((v: any) => v.id === formValues.id)
+                      .value[index].data
                   }
                   onChange={field.onChange}
                   inpProp={e}
                   label={label || value}
                   index={index}
                   id={id}
-                  formIndex={formIndex}
-                  formId={home ? formValues.id : formvalue.id}
+                  formId={formValues.id}
                   // {...ResFormForm[e]}
                 />
               </div>
@@ -56,7 +48,7 @@ const ResForm = ({ formValues, id, formIndex, home }: any) => {
   return (
     <div className="form">
       <div className="res__header">
-        <p>{formvalue.value[0].value}</p>
+        <p>{formValues.value[0].value}</p>
         <p>x</p>
       </div>
       <div className="resform__body">

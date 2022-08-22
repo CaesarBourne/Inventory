@@ -39,7 +39,7 @@ function SingleRes() {
           resources.hasOwnProperty(type) &&
           resources[type].map((e: any, index: any) => {
             console.log("essw", e);
-            return <ResForm formValues={e} id={type} formIndex={index} />;
+            return <ResForm formValues={e} id={type}/>;
           })}
       </div>
     </>

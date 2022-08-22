@@ -15,7 +15,10 @@ function Home() {
     dispatch(addRes({ res: types[p], id: "type" }));
   };
   let p = "";
-
+  const res = Object.keys(resources);
+  const reso = res.map((v) => resources[v]);
+  console.log("reso", reso);
+  console.log("res", res);
   return (
     <div>
       {/* <Dynamic/> */}
@@ -33,20 +36,13 @@ function Home() {
         Add Item
       </button>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-        {Object.keys(resources).length !== 0 &&
-          // Object.keys(resources).map((v:any)=>resources[v])
-          Object.keys(resources)
-            .reduce((acc: any, v: any) => {
-              return [...acc, ...resources[v]];
-            }, [])
-            .map((e: any, index: any) => {
-              // const s = Object.keys(resources);
-              console.log("eqeq", e);
-              console.log("resources", resources);
-              return <ResForm formIndex={index} formValues={e} fid={p} home />;
-            })
+        {
+          reso.map((ress, index) =>
+            ress.map((r: any) => <ResForm formValues={r} id={res[index]} />)
+          )
+
           // Object.keys(resources).map((v) => resources[v])
-          }
+        }
       </div>
     </div>
   );

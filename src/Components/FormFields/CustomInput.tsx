@@ -23,12 +23,9 @@ function CustomInput(
             onChange={(e: any) => {
               changeText({ index, value: e.target.value, id });
               return onChange(e.target.value);
-              // return onChange(value);
             }}
-            // onChange={onChange}
             placeholder="Enter field name"
             value={value}
-            //   {...rest}
           />
         </div>
       );
