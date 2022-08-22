@@ -12,7 +12,7 @@ function CustomResInput(
   const changeText = (p: any) => {
     dispatch(addResValue(p));
   };
-  // const types = useSelector((state: any) => state.type.types);
+
   switch (type) {
     case "text":
       return (
@@ -26,10 +26,10 @@ function CustomResInput(
                 id,
                 formId,
               });
-              return onChange(value);
-              // return onChange(e.target.value);
+              // return onChange(value);
+              return onChange(e.target.value);
             }}
-            placeholder="Enter field name"
+            placeholder="enter field"
             value={value}
           />
         </div>
@@ -39,13 +39,13 @@ function CustomResInput(
         <div className="inp">
           <p>{label}</p>
           <input
-            type={"number"}
+            type={"text"}
             onChange={(e: any) => {
-              changeText({ index, value: parseInt(e.target.value), id });
-              return onChange(e.target.value);
+              changeText({ index, value: e.target.value, id, formId });
+              // return onChange(e.target.value);
               // return onChange(value);
             }}
-            placeholder="Enter field name"
+            // placeholder="enter field"
             value={value}
           />
         </div>
@@ -63,13 +63,12 @@ function CustomResInput(
                 id,
                 formId,
               });
-              // return onChange(e.target.value);
-              return onChange(parseInt(value));
+
+              return onChange(e.target.value);
+              // return onChange(parseInt(value));
             }}
-            // onChange={onChange}
-            placeholder="Enter field name"
+            placeholder="enter field"
             value={value}
-            //   {...rest}
           />
         </div>
       );
@@ -80,12 +79,16 @@ function CustomResInput(
             {label}
           </p>
           <DatePicker
-            wrapperClassName="datePicker"
-            // selected={(field.value && new Date(field.value)) || null}
             selected={value}
-            dateFormat="MMMM d, yyyy"
-            // onChange={(date) => setStartDate(date)}
-            onChange={(date) => onChange(date)}
+            onChange={(date: Date) => {
+              onChange(date);
+              changeText({
+                index,
+                value: new Date(date),
+                id,
+                formId,
+              });
+            }}
           />
           <div style={{ marginBottom: "7px" }} />
         </>

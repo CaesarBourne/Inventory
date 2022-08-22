@@ -19,28 +19,17 @@ function Navbar() {
             to="/"
             style={({ isActive }) => (isActive ? activeStyle : notActiveStyle)}
           >
-            all
+            All
           </NavLink>
         </li>
 
-        {/* {Object.keys(types)
-          .map((e: any) => types[e][0].value)
-          .map((v: any) => (
-            <NavLink
-              to={v}
-              style={({ isActive }) =>
-                isActive ? activeStyle : notActiveStyle
-              }
-            >
-              {v}
-            </NavLink>
-          ))} */}
+    
         {Object.keys(types)
           .map((e) => {
             return { value: types[e][0].value, id: e };
           })
           .map(({ value, id }: any) => (
-            <li>
+            <li key={id}>
               <NavLink
                 to={`types/${id}`}
                 // to="ss"

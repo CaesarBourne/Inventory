@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Layout from "./Components/Layout";
-import ResLayout from "./Components/ResLayout";
-import SingleRes from "./Components/SingleRes";
-import Home from "./Pages/Home";
-import ManageTypes from "./Pages/ManageTypes";
+import Layout from "./Components/Layout/Layout";
+import ResLayout from "./Components/Layout/ResLayout";
+import SingleRes from "./Components/SingleResource/SingleRes";
+import Home from "./Pages/Home/Home";
+import ManageTypes from "./Pages/ManageTypes/ManageTypes";
 
 function App() {
   return (

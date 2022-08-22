@@ -1,20 +1,20 @@
 import { Controller, useForm } from "react-hook-form";
 
 import { useDispatch, useSelector } from "react-redux";
+import { removeRes } from "../../redux/resSlice";
+import { removeField } from "../../redux/typeSlice";
 
 // import "./form.css";
-import CustomResInput from "./FormFields/CustomResInput";
+import CustomResInput from "../FormFields/CustomResInput";
 
-const ResForm = ({ formValues, id, home }: any) => {
+const ResForm = ({ formValues, id }: any) => {
   const { control } = useForm();
   const resources = useSelector((state: any) => state.resource.resource);
-  console.log('formValues', formValues)
-  console.log('id', id)
+  const dispatch = useDispatch();
   const formInputs = formValues.value.map((e: any, index: any) => {
     const { opt, value, label } = e;
     return (
       <section key={index}>
-        {/* <label>{label}</label> */}
         <Controller
           name={index.toString()}
           control={control}
@@ -35,7 +35,6 @@ const ResForm = ({ formValues, id, home }: any) => {
                   index={index}
                   id={id}
                   formId={formValues.id}
-                  // {...ResFormForm[e]}
                 />
               </div>
             );
@@ -46,10 +45,17 @@ const ResForm = ({ formValues, id, home }: any) => {
   });
 
   return (
-    <div className="form">
+    <div className="resform">
       <div className="res__header">
         <p>{formValues.value[0].value}</p>
-        <p>x</p>
+        <p
+          onClick={() =>
+            dispatch(removeRes({ id: formValues.id, resId: id }))
+          }
+          style={{ cursor: "pointer" }}
+        >
+          x
+        </p>
       </div>
       <div className="resform__body">
         <div style={{ display: "flex", flexDirection: "column" }}>
