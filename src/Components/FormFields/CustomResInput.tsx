@@ -1,26 +1,20 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addResValue } from "../../redux/resSlice";
-import { addValue } from "../../redux/typeSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { addResValue } from "../../redux/resSlice";
 
 function CustomResInput(
-  { type, onChange, value, label, index, id, formIndex, formId }: any,
+  { type, onChange, value, label, index, id, formId }: any,
   ...rest: any
 ) {
   const dispatch = useDispatch();
-  const resources = useSelector((state: any) => state.resource.resource);
+
   const changeText = (p: any) => {
     dispatch(addResValue(p));
-    // console.log("p.index", p.index);
-    // console.log("yesd", resources[p.id][formIndex][p.index]);
   };
-  const types = useSelector((state: any) => state.type.types);
-  console.log("type", value);
+  // const types = useSelector((state: any) => state.type.types);
   switch (type) {
     case "text":
-      //   return <TextInput value={value} onChange={onChange} />;
       return (
         <div className="inp">
           <p>{label}</p>
@@ -30,7 +24,6 @@ function CustomResInput(
                 index,
                 value: e.target.value,
                 id,
-                formIndex,
                 formId,
               });
               return onChange(value);
@@ -38,7 +31,6 @@ function CustomResInput(
             }}
             placeholder="Enter field name"
             value={value}
-            //   {...rest}
           />
         </div>
       );
@@ -69,10 +61,10 @@ function CustomResInput(
                 index,
                 value: parseInt(e.target.value),
                 id,
-                formIndex,
+                formId,
               });
-              return onChange(e.target.value);
-              // return onChange(value);
+              // return onChange(e.target.value);
+              return onChange(parseInt(value));
             }}
             // onChange={onChange}
             placeholder="Enter field name"
